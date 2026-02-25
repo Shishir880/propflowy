@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PropFlowy — Real Estate Automation & Data Company</title>
+<meta name="description" content="PropFlowy is a real estate automation and data intelligence company. We help builders and agencies close more deals with less effort through custom automation, AI, and data systems.">
+<meta name="keywords" content="real estate automation company, proptech company, real estate data intelligence, builder automation, property sales automation, PropFlowy">
+<meta property="og:title" content="PropFlowy — We Automate Real Estate Sales">
+<meta property="og:description" content="PropFlowy builds custom automation, data, and AI systems for real estate companies. We help you sell more, faster, with less manual work.">
+<link rel="canonical" href="https://propflowy.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@300;400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --night: #04091a;
+  --night2: #060d22;
+  --blue: #1d4ed8;
+  --blue2: #2563eb;
+  --blue3: #3b82f6;
+  --blue4: #93c5fd;
+  --cyan: #0891b2;
+  --cyan2: #06b6d4;
+  --glass: rgba(255,255,255,0.055);
+  --gb: rgba(255,255,255,0.09);
+  --gh: rgba(255,255,255,0.085);
+  --w: #ffffff;
+  --w2: rgba(255,255,255,0.6);
+  --w3: rgba(255,255,255,0.32);
+  --w4: rgba(255,255,255,0.12);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--night);
+  color: var(--w);
+  overflow-x: hidden;
+}
+
+/* GRID TEXTURE */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(29,78,216,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29,78,216,.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── CURSOR ─── */
+#dot { position:fixed;width:8px;height:8px;background:var(--blue3);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .15s,height .15s; }
+#ring { position:fixed;width:32px;height:32px;border:1px solid rgba(59,130,246,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  padding: 0 6%; height: 76px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(4,9,26,0.65);
+  backdrop-filter: blur(28px);
+  border-bottom: 1px solid var(--w4);
+  transition: all .4s;
+}
+nav.s { background: rgba(4,9,26,0.94); box-shadow: 0 2px 40px rgba(0,0,0,.4); }
+
+.logo { display:flex;align-items:center;gap:11px;text-decoration:none; }
+.logo-mark {
+  width:40px;height:40px;
+  background: linear-gradient(135deg,var(--blue2),var(--cyan2));
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:18px;color:#fff;
+  box-shadow:0 0 24px rgba(37,99,235,.35);
+}
+.logo-name { font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.4px; }
+.logo-name span { color:var(--blue3); }
+
+.nav-links { display:flex;gap:36px;list-style:none; }
+.nav-links a { text-decoration:none;font-size:13.5px;font-weight:500;color:var(--w3);transition:color .2s;letter-spacing:.1px; }
+.nav-links a:hover { color:#fff; }
+
+.nav-r { display:flex;align-items:center;gap:14px; }
+.btn-talk {
+  font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:13px;
+  border:1.5px solid var(--gb);background:var(--glass);color:#fff;
+  padding:11px 24px;border-radius:100px;cursor:pointer;
+  backdrop-filter:blur(10px);transition:all .3s;
+}
+.btn-talk:hover { border-color:rgba(59,130,246,.5);background:rgba(59,130,246,.1); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  padding: 160px 6% 100px;
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+
+/* ambient glows */
+.glow-l { position:absolute;top:-200px;left:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(29,78,216,.14),transparent 65%);pointer-events:none;animation:breathe 9s ease-in-out infinite; }
+.glow-r { position:absolute;top:100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(6,182,212,.09),transparent 65%);pointer-events:none;animation:breathe 9s 4s ease-in-out infinite; }
+@keyframes breathe { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.1);opacity:.7} }
+
+.hero-left { position:relative;z-index:1; }
+
+.eyebrow {
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(29,78,216,.12);border:1px solid rgba(29,78,216,.28);
+  border-radius:100px;padding:7px 16px 7px 7px;margin-bottom:32px;
+  animation: riseIn .8s ease both;
+}
+.eyebrow-dot { width:24px;height:24px;background:linear-gradient(135deg,var(--blue2),var(--cyan2));border-radius:50%;display:flex;align-items:center;justify-content:center; }
+.eyebrow-dot svg { width:12px;height:12px; }
+.eyebrow span { font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:11px;color:var(--blue4);letter-spacing:1.2px;text-transform:uppercase; }
+
+.hero-h1 {
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:clamp(46px,5.5vw,78px);
+  font-weight:900;line-height:1.0;letter-spacing:-2.5px;
+  margin-bottom:26px;
+  animation: riseIn .8s .1s ease both;
+}
+.hero-h1 i {
+  font-family:'Instrument Serif',serif;
+  font-style:italic;font-weight:400;
+  background:linear-gradient(90deg,var(--blue3),var(--cyan2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+.hero-p {
+  font-size:17px;line-height:1.8;color:var(--w2);
+  max-width:480px;margin-bottom:44px;
+  animation: riseIn .8s .2s ease both;
+}
+
+.hero-actions { display:flex;gap:14px;align-items:center;animation:riseIn .8s .3s ease both; }
+.btn-primary {
+  font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:14px;
+  background:linear-gradient(135deg,var(--blue2),var(--cyan));
+  color:#fff;border:none;padding:17px 34px;border-radius:14px;
+  cursor:pointer;transition:all .3s;
+  box-shadow:0 0 36px rgba(37,99,235,.4);
+  display:inline-flex;align-items:center;gap:9px;
+}
+.btn-primary:hover { transform:translateY(-2px);box-shadow:0 0 56px rgba(37,99,235,.6); }
+.btn-secondary {
+  font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:14px;
+  background:var(--glass);border:1px solid var(--gb);color:#fff;
+  padding:16px 28px;border-radius:14px;cursor:pointer;
+  backdrop-filter:blur(10px);transition:all .3s;
+  display:inline-flex;align-items:center;gap:9px;
+}
+.btn-secondary:hover { background:var(--gh);border-color:rgba(255,255,255,.18); }
+
+.hero-proof {
+  display:flex;gap:32px;margin-top:52px;padding-top:44px;
+  border-top:1px solid var(--w4);
+  animation:riseIn .8s .45s ease both;
+}
+.proof-item .n {
+  font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:30px;letter-spacing:-1px;
+  background:linear-gradient(135deg,#fff,var(--blue4));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.proof-item .l { font-size:12px;color:var(--w3);text-transform:uppercase;letter-spacing:.6px;margin-top:3px; }
+
+/* HERO RIGHT — visual */
+.hero-right { position:relative;z-index:1;animation:riseIn 1s .35s ease both; }
+
+.screen-wrap {
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:24px;padding:24px;
+  backdrop-filter:blur(20px);
+  box-shadow:0 40px 80px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.07);
+}
+.screen-bar { display:flex;align-items:center;justify-content:space-between;margin-bottom:20px; }
+.dots { display:flex;gap:6px; }
+.dots span { width:11px;height:11px;border-radius:50%; }
+.dr{background:#ef4444}.dy{background:#f59e0b}.dg{background:#22c55e}
+.screen-label { font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:12px;color:var(--w3); }
+.live-pill { display:flex;align-items:center;gap:5px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:100px;padding:4px 11px; }
+.live-dot { width:6px;height:6px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite; }
+.live-pill span { font-size:10px;font-weight:700;color:#4ade80;font-family:'Cabinet Grotesk',sans-serif; }
+
+/* metrics row */
+.metric-row { display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px; }
+.metric-box {
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.065);
+  border-radius:14px;padding:14px 16px;transition:all .3s;
+}
+.metric-box:hover { background:rgba(255,255,255,.07);border-color:rgba(59,130,246,.3); }
+.m-lbl { font-size:10px;color:var(--w3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:7px; }
+.m-val { font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:22px;line-height:1; }
+.m-chg { font-size:10px;color:#4ade80;font-weight:600;margin-top:3px; }
+.m-chg.dn { color:#f87171; }
+
+/* chart */
+.chart-wrap { background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.055);border-radius:14px;padding:16px;margin-bottom:14px; }
+.chart-head { display:flex;justify-content:space-between;align-items:center;margin-bottom:14px; }
+.chart-head span:first-child { font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:12px;color:var(--w2); }
+.chart-head span:last-child { font-size:10px;color:var(--blue4);background:rgba(59,130,246,.1);border-radius:20px;padding:3px 9px; }
+.bars { display:flex;align-items:flex-end;gap:6px;height:64px; }
+.b { flex:1;border-radius:4px 4px 3px 3px; }
+.bb { background:linear-gradient(180deg,var(--blue3),var(--blue)); }
+.bc { background:linear-gradient(180deg,var(--cyan2),var(--cyan)); }
+.bd { background:rgba(255,255,255,.08); }
+
+/* feed */
+.feed { display:flex;flex-direction:column;gap:8px; }
+.feed-item {
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.05);border-radius:12px;transition:all .2s;
+}
+.feed-item:hover { background:rgba(255,255,255,.06);border-color:rgba(59,130,246,.2); }
+.feed-ava { width:30px;height:30px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:10px;color:#fff; }
+.feed-txt { flex:1; }
+.feed-name { font-size:12px;font-weight:600; }
+.feed-sub { font-size:10px;color:var(--w3);margin-top:2px; }
+.feed-tag { font-family:'Cabinet Grotesk',sans-serif;font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px; }
+.tag-hot{background:rgba(239,68,68,.15);color:#f87171}
+.tag-warm{background:rgba(245,158,11,.15);color:#fbbf24}
+.tag-ok{background:rgba(34,197,94,.15);color:#4ade80}
+
+/* floating cards */
+.float-a {
+  position:absolute;top:-24px;right:-24px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:100px;padding:11px 18px;
+  backdrop-filter:blur(20px);
+  display:flex;align-items:center;gap:10px;
+  animation:float 4s ease-in-out infinite;
+}
+.float-b {
+  position:absolute;bottom:-20px;left:-24px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:100px;padding:11px 18px;
+  backdrop-filter:blur(20px);
+  display:flex;align-items:center;gap:10px;
+  animation:float 4s 2s ease-in-out infinite;
+}
+.fa-ico { width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center; }
+.fa-txt .t1 { font-size:12px;font-weight:700; }
+.fa-txt .t2 { font-size:10px;color:var(--w3); }
+
+/* ─── CLIENTS STRIP ─── */
+.clients {
+  border-top:1px solid var(--w4);border-bottom:1px solid var(--w4);
+  padding:26px 6%;position:relative;z-index:1;
+  display:flex;align-items:center;gap:0;
+  background:rgba(255,255,255,.02);
+}
+.clients-label { font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:11px;color:var(--w3);text-transform:uppercase;letter-spacing:1.2px;white-space:nowrap;margin-right:48px; }
+.clients-track { display:flex;gap:52px;overflow:hidden;mask-image:linear-gradient(to right,transparent,black 8%,black 92%,transparent); }
+.client-name { font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:14px;color:rgba(255,255,255,.2);transition:color .3s;white-space:nowrap;letter-spacing:-.3px;cursor:default; }
+.client-name:hover { color:rgba(255,255,255,.5); }
+
+/* ─── SECTION BASE ─── */
+.section { padding:120px 6%;position:relative;z-index:1; }
+.section-inner { max-width:1180px;margin:0 auto; }
+
+.s-tag {
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:11px;
+  color:var(--blue4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px;
+}
+.s-tag::before { content:'';width:22px;height:1.5px;background:var(--blue3);display:block; }
+
+.s-h2 {
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:clamp(32px,4vw,52px);font-weight:900;
+  line-height:1.08;letter-spacing:-2px;margin-bottom:16px;
+}
+.s-h2 i { font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;background:linear-gradient(90deg,var(--blue3),var(--cyan2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+.s-p { font-size:16px;color:var(--w2);line-height:1.75;max-width:520px; }
+
+/* ─── WHAT WE DO ─── */
+.wwd { background:var(--night2); }
+
+.wwd-grid { display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center; }
+.wwd-left .s-p { margin-bottom:40px; }
+
+.service-list { display:flex;flex-direction:column;gap:16px; }
+.service-item {
+  display:flex;align-items:flex-start;gap:18px;
+  padding:22px 24px;
+  background:var(--glass);border:1px solid var(--gb);
+  border-radius:20px;transition:all .35s;cursor:default;
+  position:relative;overflow:hidden;
+}
+.service-item::before {
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--blue3),var(--cyan2));
+  transform:scaleY(0);transform-origin:top;transition:transform .35s;
+  border-radius:0 2px 2px 0;
+}
+.service-item:hover { background:var(--gh);border-color:rgba(59,130,246,.25);transform:translateX(6px); }
+.service-item:hover::before { transform:scaleY(1); }
+.si-icon { width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+.si-icon svg { width:22px;height:22px; }
+.sib { background:rgba(29,78,216,.15);color:var(--blue4); }
+.sic { background:rgba(6,182,212,.12);color:var(--cyan2); }
+.sig { background:rgba(34,197,94,.12);color:#4ade80; }
+.sia { background:rgba(245,158,11,.12);color:#fbbf24; }
+.si-text h4 { font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:16px;margin-bottom:6px; }
+.si-text p { font-size:14px;color:var(--w2);line-height:1.65; }
+
+.wwd-right {
+  background:var(--glass);border:1px solid var(--gb);border-radius:28px;padding:40px;
+  backdrop-filter:blur(16px);
+}
+.wwd-quote {
+  font-family:'Instrument Serif',serif;font-style:italic;
+  font-size:22px;line-height:1.55;color:var(--w);margin-bottom:32px;
+}
+.wwd-numbers { display:grid;grid-template-columns:1fr 1fr;gap:24px; }
+.wn { padding:24px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.065);border-radius:18px; }
+.wn .num { font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:36px;letter-spacing:-1.5px;line-height:1;background:linear-gradient(135deg,#fff,var(--blue4));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+.wn .unit { font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:22px; }
+.wn .label { font-size:13px;color:var(--w3);margin-top:6px;line-height:1.4; }
+
+/* ─── HOW WE WORK ─── */
+.hww-header { text-align:center;margin-bottom:72px; }
+.hww-header .s-p { margin:0 auto; }
+
+.process-steps { display:grid;grid-template-columns:repeat(4,1fr);position:relative;gap:0; }
+.process-steps::before {
+  content:'';position:absolute;top:38px;left:12.5%;right:12.5%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--blue3) 20%,var(--cyan2) 80%,transparent);
+}
+.p-step { padding:0 20px;text-align:center; }
+.p-num {
+  width:76px;height:76px;border-radius:50%;margin:0 auto 28px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:22px;
+  position:relative;z-index:1;transition:all .3s;
+}
+.p-step:nth-child(1) .p-num { background:rgba(29,78,216,.2);border:2px solid rgba(29,78,216,.4);color:var(--blue3); }
+.p-step:nth-child(2) .p-num { background:rgba(37,99,235,.2);border:2px solid rgba(37,99,235,.4);color:var(--blue3); }
+.p-step:nth-child(3) .p-num { background:rgba(6,182,212,.15);border:2px solid rgba(6,182,212,.35);color:var(--cyan2); }
+.p-step:nth-child(4) .p-num { background:rgba(34,197,94,.15);border:2px solid rgba(34,197,94,.3);color:#4ade80; }
+.p-step:hover .p-num { transform:scale(1.1);box-shadow:0 0 30px rgba(59,130,246,.3); }
+.p-title { font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:16px;margin-bottom:12px; }
+.p-desc { font-size:14px;color:var(--w2);line-height:1.7; }
+
+/* ─── RESULTS ─── */
+.results-section { background:var(--night2); }
+.results-header { margin-bottom:64px; }
+
+.results-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px; }
+
+.result-card {
+  background:var(--glass);border:1px solid var(--gb);border-radius:24px;
+  padding:36px;transition:all .35s;position:relative;overflow:hidden;
+}
+.result-card::after {
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue2),var(--cyan2));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s;
+}
+.result-card:hover { background:var(--gh);transform:translateY(-5px);box-shadow:0 24px 50px rgba(0,0,0,.3); }
+.result-card:hover::after { transform:scaleX(1); }
+
+.rc-tag {
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);
+  border-radius:100px;padding:4px 12px;margin-bottom:20px;
+  font-family:'Cabinet Grotesk',sans-serif;font-size:11px;font-weight:700;color:#4ade80;
+}
+.rc-big { font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:48px;letter-spacing:-2px;line-height:1;margin-bottom:8px; }
+.rc-big span { font-size:26px; }
+.rc-label { font-size:16px;font-weight:600;color:var(--w);margin-bottom:10px;font-family:'Cabinet Grotesk',sans-serif; }
+.rc-desc { font-size:14px;color:var(--w2);line-height:1.7; }
+
+.result-card.story {
+  background:linear-gradient(135deg,rgba(29,78,216,.14),rgba(6,182,212,.07));
+  border-color:rgba(29,78,216,.3);
+  grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between;
+}
+.story-quote { font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;line-height:1.6;color:#fff;margin-bottom:28px;flex:1; }
+.story-attr { display:flex;align-items:center;gap:13px; }
+.story-ava { width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:15px;color:#fff; }
+.story-name { font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:15px; }
+.story-role { font-size:13px;color:var(--w3);margin-top:2px; }
+
+.result-card.dark-card { background:rgba(255,255,255,.025); }
+
+/* ─── WHO WE HELP ─── */
+.who-header { text-align:center;margin-bottom:72px; }
+.who-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:20px; }
+.who-card {
+  background:var(--glass);border:1px solid var(--gb);
+  border-radius:24px;padding:36px;transition:all .35s;
+  position:relative;overflow:hidden;
+}
+.who-card:hover { background:var(--gh);border-color:rgba(59,130,246,.25);transform:translateY(-5px); }
+.who-icon { width:52px;height:52px;border-radius:18px;display:flex;align-items:center;justify-content:center;margin-bottom:22px; }
+.who-icon svg { width:26px;height:26px; }
+.who-title { font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:20px;margin-bottom:12px;letter-spacing:-.3px; }
+.who-desc { font-size:15px;color:var(--w2);line-height:1.7;margin-bottom:22px; }
+.who-points { list-style:none;display:flex;flex-direction:column;gap:9px; }
+.who-points li { display:flex;align-items:center;gap:9px;font-size:13px;color:var(--w2); }
+.who-points li::before { content:'';width:5px;height:5px;border-radius:50%;background:var(--blue3);flex-shrink:0; }
+
+/* ─── DATA SECTION ─── */
+.data-sec { background:var(--night2); }
+.data-layout { display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center; }
+.data-visual {
+  background:var(--glass);border:1px solid var(--gb);border-radius:28px;padding:32px;
+  backdrop-filter:blur(16px);
+}
+.dv-top { display:flex;justify-content:space-between;align-items:center;margin-bottom:22px; }
+.dv-title { font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:14px;color:var(--w2); }
+.dv-grid { display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px; }
+.dv-box {
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.065);
+  border-radius:16px;padding:18px;
+}
+.dv-box .lbl { font-size:10px;color:var(--w3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px; }
+.dv-box .val { font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:26px;line-height:1; }
+.dv-box .chg { font-size:11px;color:#4ade80;font-weight:600;margin-top:4px; }
+.spark-row { display:flex;gap:8px;margin-bottom:16px; }
+.spark-item { flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px;text-align:center; }
+.spark-item .sil { font-size:10px;color:var(--w3);margin-bottom:5px; }
+.spark-item .siv { font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:14px; }
+.spark-item .siv.up { color:#4ade80; }
+.spark-item .siv.dn { color:#f87171; }
+.data-text { }
+.data-points { margin-top:36px;display:flex;flex-direction:column;gap:18px; }
+.dp { display:flex;align-items:flex-start;gap:16px; }
+.dp-icon { width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+.dp-icon svg { width:20px;height:20px; }
+.dp h5 { font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:15px;margin-bottom:5px; }
+.dp p { font-size:14px;color:var(--w2);line-height:1.65; }
+
+/* ─── CONTACT / CTA ─── */
+.contact-section { padding:120px 6% 140px; }
+.contact-box {
+  max-width:1180px;margin:0 auto;
+  background:linear-gradient(135deg,rgba(29,78,216,.12),rgba(6,182,212,.06));
+  border:1px solid rgba(29,78,216,.24);border-radius:36px;
+  padding:96px 80px;position:relative;overflow:hidden;
+  backdrop-filter:blur(20px);
+}
+.contact-box::before { content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(29,78,216,.18),transparent 70%);pointer-events:none; }
+.contact-inner { max-width:680px;margin:0 auto;text-align:center;position:relative; }
+.contact-box h2 { font-family:'Cabinet Grotesk',sans-serif;font-size:clamp(36px,5vw,62px);font-weight:900;line-height:1.05;letter-spacing:-2.5px;margin-bottom:20px; }
+.contact-box h2 i { font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;background:linear-gradient(90deg,var(--blue3),var(--cyan2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+.contact-box p { font-size:17px;color:var(--w2);line-height:1.75;margin-bottom:44px; }
+.contact-form { display:flex;gap:12px;max-width:480px;margin:0 auto 20px; }
+.contact-input {
+  flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;padding:16px 20px;font-size:14px;color:#fff;outline:none;
+  font-family:'DM Sans',sans-serif;transition:border-color .2s;
+}
+.contact-input:focus { border-color:rgba(59,130,246,.5); }
+.contact-input::placeholder { color:var(--w3); }
+.btn-submit {
+  font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:14px;
+  background:linear-gradient(135deg,var(--blue2),var(--cyan));
+  color:#fff;border:none;padding:16px 28px;border-radius:14px;
+  cursor:pointer;white-space:nowrap;transition:all .3s;
+  box-shadow:0 0 30px rgba(37,99,235,.35);
+}
+.btn-submit:hover { transform:translateY(-1px);box-shadow:0 0 50px rgba(37,99,235,.55); }
+.contact-note { font-size:13px;color:var(--w3);text-align:center; }
+
+.alt-links { display:flex;justify-content:center;gap:28px;margin-top:36px; }
+.alt-link { display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--w2);text-decoration:none;transition:color .2s; }
+.alt-link:hover { color:#fff; }
+.alt-link svg { width:16px;height:16px; }
+
+/* ─── FOOTER ─── */
+footer {
+  border-top:1px solid var(--w4);
+  padding:72px 6% 36px;
+  position:relative;z-index:1;
+}
+.footer-grid { display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:56px;max-width:1180px;margin:0 auto 56px; }
+.footer-about .logo-name { font-size:18px; }
+.f-desc { font-size:14px;color:var(--w3);line-height:1.75;margin-top:18px;margin-bottom:26px;max-width:300px; }
+.f-socials { display:flex;gap:9px; }
+.f-soc { width:36px;height:36px;border-radius:10px;background:var(--glass);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;color:var(--w3);text-decoration:none;transition:all .2s; }
+.f-soc:hover { background:var(--blue2);border-color:var(--blue2);color:#fff; }
+.f-soc svg { width:15px;height:15px; }
+.f-col-head { font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:11px;color:var(--w3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:18px; }
+.f-links { list-style:none; }
+.f-links li { margin-bottom:12px; }
+.f-links a { font-size:14px;color:var(--w2);text-decoration:none;transition:color .2s; }
+.f-links a:hover { color:#fff; }
+.footer-bottom { max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--w4);padding-top:28px; }
+.f-copy { font-size:13px;color:var(--w3); }
+.f-copy span { color:var(--blue4); }
+.f-badge {
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);
+  border-radius:100px;padding:5px 14px;
+  font-family:'Cabinet Grotesk',sans-serif;font-size:11px;font-weight:700;color:#4ade80;
+}
+
+/* ─── CHAT ─── */
+.chat-wrap { position:fixed;bottom:28px;right:28px;z-index:1000; }
+#chatWin {
+  position:absolute;bottom:70px;right:0;width:360px;height:500px;
+  background:rgba(4,9,26,.93);border:1px solid rgba(255,255,255,.1);
+  border-radius:22px;backdrop-filter:blur(30px);
+  display:none;flex-direction:column;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,.6);
+}
+#chatWin.on { display:flex; }
+.ch-head { padding:18px 20px;background:linear-gradient(135deg,rgba(29,78,216,.2),rgba(6,182,212,.1));border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between; }
+.ch-hl { display:flex;align-items:center;gap:11px; }
+.ch-av { width:36px;height:36px;background:linear-gradient(135deg,var(--blue2),var(--cyan2));border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;color:#fff;font-size:15px; }
+.ch-nm { font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:14px; }
+.ch-st { font-size:10px;color:#4ade80;display:flex;align-items:center;gap:4px;margin-top:2px; }
+.ch-sd { width:5px;height:5px;background:#22c55e;border-radius:50%; }
+.ch-cl { background:none;border:none;cursor:pointer;color:var(--w3);transition:color .2s;padding:4px; }
+.ch-cl:hover { color:#fff; }
+.ch-msgs { flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:11px; }
+.ch-msgs::-webkit-scrollbar { width:3px; }
+.ch-msgs::-webkit-scrollbar-thumb { background:rgba(255,255,255,.1);border-radius:10px; }
+.m-row { display:flex;gap:8px;align-items:flex-end; }
+.m-row.u { flex-direction:row-reverse; }
+.m-av { width:24px;height:24px;background:linear-gradient(135deg,var(--blue2),var(--cyan2));border-radius:7px;flex-shrink:0; }
+.bbl { max-width:76%;padding:10px 14px;font-size:13px;line-height:1.6;border-radius:14px; }
+.m-row.bot .bbl { background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.06);border-radius:14px 14px 14px 4px; }
+.m-row.u .bbl { background:linear-gradient(135deg,var(--blue2),var(--cyan));border-radius:14px 14px 4px 14px; }
+.ch-qr { display:flex;gap:6px;flex-wrap:wrap;padding:4px 16px 10px; }
+.ch-q { font-family:'Cabinet Grotesk',sans-serif;font-size:11px;font-weight:700;padding:6px 12px;border-radius:100px;border:1px solid rgba(29,78,216,.3);background:rgba(29,78,216,.08);color:var(--blue4);cursor:pointer;transition:all .2s;white-space:nowrap; }
+.ch-q:hover { background:var(--blue2);color:#fff;border-color:var(--blue2); }
+.ch-ir { padding:13px 15px;border-top:1px solid rgba(255,255,255,.06);display:flex;gap:8px;align-items:center; }
+.ch-in { flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:100px;padding:9px 15px;font-size:13px;color:#fff;outline:none;font-family:'DM Sans',sans-serif;transition:border-color .2s; }
+.ch-in:focus { border-color:rgba(59,130,246,.4); }
+.ch-in::placeholder { color:var(--w3); }
+.ch-snd { width:36px;height:36px;background:linear-gradient(135deg,var(--blue2),var(--cyan2));border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;box-shadow:0 0 14px rgba(37,99,235,.4); }
+.ch-snd:hover { transform:scale(1.08); }
+.ch-snd svg { width:14px;height:14px;fill:#fff; }
+#chatBtn { width:56px;height:56px;background:linear-gradient(135deg,var(--blue2),var(--cyan2));border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 0 28px rgba(37,99,235,.45),0 8px 24px rgba(0,0,0,.25);transition:all .3s;position:relative; }
+#chatBtn:hover { transform:scale(1.08);box-shadow:0 0 48px rgba(37,99,235,.65); }
+#chatBtn svg { width:24px;height:24px;color:#fff; }
+.c-ping { position:absolute;top:-4px;right:-4px;width:17px;height:17px;background:#ef4444;border-radius:50%;border:2px solid var(--night);font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:8px;color:#fff;display:flex;align-items:center;justify-content:center; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes riseIn { from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)} }
+@keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)} }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)} }
+.rv { opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease; }
+.rv.in { opacity:1;transform:translateY(0); }
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px) {
+  .hero { grid-template-columns:1fr;padding:130px 6% 80px; }
+  .hero-right { display:none; }
+  .wwd-grid { grid-template-columns:1fr; }
+  .process-steps { grid-template-columns:repeat(2,1fr); }
+  .process-steps::before { display:none; }
+  .data-layout { grid-template-columns:1fr; }
+  .results-grid { grid-template-columns:1fr 1fr; }
+  .result-card.story { grid-row:auto; }
+  .footer-grid { grid-template-columns:1fr 1fr;gap:36px; }
+}
+@media(max-width:768px) {
+  body { cursor:auto; }
+  #dot,#ring { display:none; }
+  nav .nav-links { display:none; }
+  .hero-proof { flex-wrap:wrap;gap:20px; }
+  .wwd-numbers { grid-template-columns:1fr; }
+  .results-grid { grid-template-columns:1fr; }
+  .who-grid { grid-template-columns:1fr; }
+  .contact-form { flex-direction:column; }
+  .contact-box { padding:48px 28px; }
+  .alt-links { flex-direction:column;align-items:center;gap:16px; }
+  .footer-grid { grid-template-columns:1fr; }
+  .footer-bottom { flex-direction:column;gap:16px;text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<div id="dot"></div>
+<div id="ring"></div>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <a href="/" class="logo">
+    <div class="logo-mark">P</div>
+    <span class="logo-name">Prop<span>Flowy</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#what-we-do">What We Do</a></li>
+    <li><a href="#how">Our Process</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#who">Who We Help</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-r">
+    <button class="btn-talk" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Let's Talk →</button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="glow-l"></div>
+  <div class="glow-r"></div>
+
+  <div class="hero-left">
+    <div class="eyebrow">
+      <div class="eyebrow-dot">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <span>Real Estate Automation & Data Company</span>
+    </div>
+
+    <h1 class="hero-h1">
+      We Build the<br>
+      Systems That <i>Close</i><br>
+      More Deals.
+    </h1>
+
+    <p class="hero-p">
+      PropFlowy is a real estate automation and data company. We work directly with builders and agencies to design, build, and run the systems that turn leads into revenue — faster, smarter, and at scale.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Work With Us
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <button class="btn-secondary" onclick="document.getElementById('what-we-do').scrollIntoView({behavior:'smooth'})">
+        See What We Do
+      </button>
+    </div>
+
+    <div class="hero-proof">
+      <div class="proof-item"><div class="n">500+</div><div class="l">Real estate companies served</div></div>
+      <div class="proof-item"><div class="n">$1.2B</div><div class="l">In revenue tracked</div></div>
+      <div class="proof-item"><div class="n">40%</div><div class="l">Avg. faster deal closing</div></div>
+      <div class="proof-item"><div class="n">28 <span style="font-size:18px;letter-spacing:0">countries</span></div><div class="l">Active clients worldwide</div></div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div style="position:relative">
+      <div class="float-a">
+        <div class="fa-ico" style="background:rgba(34,197,94,.15)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="fa-txt"><div class="t1">Deal Closed — Unit 7B</div><div class="t2">$418,000 · 2 mins ago</div></div>
+      </div>
+
+      <div class="screen-wrap">
+        <div class="screen-bar">
+          <div class="dots"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div>
+          <span class="screen-label">PropFlowy Dashboard</span>
+          <div class="live-pill"><div class="live-dot"></div><span>LIVE</span></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-box"><div class="m-lbl">Revenue MTD</div><div class="m-val">$4.8M</div><div class="m-chg">↑ 28% vs last month</div></div>
+          <div class="metric-box"><div class="m-lbl">Active Leads</div><div class="m-val">2,891</div><div class="m-chg">↑ 14% this week</div></div>
+          <div class="metric-box"><div class="m-lbl">Deals Closed</div><div class="m-val">142</div><div class="m-chg">↑ 34% conversion</div></div>
+          <div class="metric-box"><div class="m-lbl">Avg Response</div><div class="m-val">4 min</div><div class="m-chg">↓ 82% faster</div></div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-head"><span>Pipeline Revenue Flow</span><span>↑ 28% this quarter</span></div>
+          <div class="bars">
+            <div class="b bd" style="height:44%"></div><div class="b bb" style="height:60%"></div>
+            <div class="b bd" style="height:52%"></div><div class="b bc" style="height:75%"></div>
+            <div class="b bb" style="height:88%"></div><div class="b bd" style="height:65%"></div>
+            <div class="b bc" style="height:92%"></div><div class="b bb" style="height:100%"></div>
+          </div>
+        </div>
+        <div class="feed">
+          <div class="feed-item">
+            <div class="feed-ava" style="background:linear-gradient(135deg,#ef4444,#f97316)">AK</div>
+            <div class="feed-txt"><div class="feed-name">Ahmed Khan — 3BHK Interest, Tower A</div><div class="feed-sub">Visited 6× · Session 12 min · Budget ₹85L confirmed</div></div>
+            <span class="feed-tag tag-hot">🔥 96</span>
+          </div>
+          <div class="feed-item">
+            <div class="feed-ava" style="background:linear-gradient(135deg,#22c55e,#16a34a)">MT</div>
+            <div class="feed-txt"><div class="feed-name">Michael Torres — Penthouse 12F</div><div class="feed-sub">$340,000 · KYC auto-generated · Signed 14:22</div></div>
+            <span class="feed-tag tag-ok">✓ Closed</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="float-b">
+        <div class="fa-ico" style="background:rgba(239,68,68,.15)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div class="fa-txt"><div class="t1">Hot Lead — Score 96 auto-assigned</div><div class="t2">Response sent in 47 seconds</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CLIENTS ═══ -->
+<div class="clients">
+  <span class="clients-label">Trusted By</span>
+  <div class="clients-track">
+    <span class="client-name">Emerald Developers</span>
+    <span class="client-name">GlobalBuilders Corp</span>
+    <span class="client-name">Skyline Realty</span>
+    <span class="client-name">Metro Properties</span>
+    <span class="client-name">PremiumHomes Group</span>
+    <span class="client-name">CityVista Builders</span>
+    <span class="client-name">Azure Living</span>
+    <span class="client-name">Horizon Real Estate</span>
+    <span class="client-name">Emerald Developers</span>
+    <span class="client-name">GlobalBuilders Corp</span>
+  </div>
+</div>
+
+<!-- ═══ WHAT WE DO ═══ -->
+<section class="section wwd" id="what-we-do">
+  <div class="section-inner">
+    <div class="wwd-grid">
+      <div class="wwd-left rv">
+        <div class="s-tag">What We Do</div>
+        <h2 class="s-h2">We Build Real Estate Businesses<br>That Run <i>on Autopilot.</i></h2>
+        <p class="s-p">PropFlowy designs, builds, and manages the complete automation and data infrastructure for real estate companies. We're not a software you subscribe to — we're a team you work with.</p>
+
+        <div class="service-list" style="margin-top:36px">
+          <div class="service-item">
+            <div class="si-icon sib">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div class="si-text">
+              <h4>Lead Automation & CRM Systems</h4>
+              <p>We capture leads from every source, score them with AI, and assign them to the right agent — in under 60 seconds. Every time.</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="si-icon sic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+            </div>
+            <div class="si-text">
+              <h4>Data Intelligence & Analytics</h4>
+              <p>Custom dashboards and reporting systems that turn your raw data into decisions — from pipeline forecasting to agent performance tracking.</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="si-icon sig">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <div class="si-text">
+              <h4>Omnichannel Prospect Nurturing</h4>
+              <p>Automated WhatsApp, SMS, and email sequences that keep your brand present at every stage — personalized, timely, and zero manual work.</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="si-icon sia">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="si-text">
+              <h4>Compliance & Deal Closing Automation</h4>
+              <p>Auto-generated KYC documents, booking agreements, and payment plans. What used to take your team 3 days now happens in 20 minutes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wwd-right rv d2">
+        <p class="wwd-quote">"Most real estate companies are sitting on a goldmine of data and drowning in manual processes. We fix both — at the same time."</p>
+        <div style="font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:14px;color:var(--w2);margin-bottom:32px;">— PropFlowy Team</div>
+        <div class="wwd-numbers">
+          <div class="wn">
+            <div class="num">3.2<span class="unit">M</span></div>
+            <div class="label">Leads processed through our systems</div>
+          </div>
+          <div class="wn">
+            <div class="num">87<span class="unit">%</span></div>
+            <div class="label">Revenue forecast accuracy rate</div>
+          </div>
+          <div class="wn">
+            <div class="num">20<span class="unit">min</span></div>
+            <div class="label">Average deal-close time after PropFlowy</div>
+          </div>
+          <div class="wn">
+            <div class="num">4<span class="unit">min</span></div>
+            <div class="label">Average lead response time for our clients</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW WE WORK ═══ -->
+<section class="section" id="how">
+  <div class="section-inner">
+    <div class="hww-header rv">
+      <div class="s-tag" style="justify-content:center">Our Process</div>
+      <h2 class="s-h2">How We Work<br>With Your Team</h2>
+      <p class="s-p">We don't drop software and disappear. We embed with your team, understand your business, and build systems that actually get used.</p>
+    </div>
+    <div class="process-steps">
+      <div class="p-step rv">
+        <div class="p-num">01</div>
+        <div class="p-title">Discovery & Audit</div>
+        <div class="p-desc">We spend the first week mapping your existing sales process, data sources, and pain points. No assumptions — we start with your reality, not a template.</div>
+      </div>
+      <div class="p-step rv d1">
+        <div class="p-num">02</div>
+        <div class="p-title">System Design</div>
+        <div class="p-desc">We design a custom automation and data architecture specifically for your business — your lead sources, your team structure, your compliance requirements.</div>
+      </div>
+      <div class="p-step rv d2">
+        <div class="p-num">03</div>
+        <div class="p-title">Build & Integrate</div>
+        <div class="p-desc">Our engineers build and connect everything — CRM, WhatsApp, portals, payment systems — into one seamless, automated pipeline. We handle all the technical complexity.</div>
+      </div>
+      <div class="p-step rv d3">
+        <div class="p-num">04</div>
+        <div class="p-title">Launch & Optimize</div>
+        <div class="p-desc">We go live with your team, train them on the system, and stay on to optimize as your business grows. You get a dedicated point of contact, not a support ticket queue.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RESULTS ═══ -->
+<section class="section results-section" id="results">
+  <div class="section-inner">
+    <div class="results-header rv">
+      <div class="s-tag">Client Results</div>
+      <h2 class="s-h2">What Happens When<br>Real Estate Runs on <i>Good Systems</i></h2>
+    </div>
+    <div class="results-grid">
+
+      <div class="result-card story rv">
+        <div>
+          <div style="display:flex;gap:4px;margin-bottom:18px">
+            <span style="color:var(--blue4);font-size:13px">★★★★★</span>
+          </div>
+          <p class="story-quote">"Before PropFlowy, our best agents were spending 40% of their day on data entry and chasing follow-ups. Within six weeks of working with them, that time went to zero. We didn't need to hire two more people — we just needed better systems."</p>
+        </div>
+        <div class="story-attr">
+          <div class="story-ava" style="background:linear-gradient(135deg,#2563eb,#7c3aed)">RV</div>
+          <div>
+            <div class="story-name">Rahul Verma</div>
+            <div class="story-role">Sales Director, Skyline Realty</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-card rv d1">
+        <div class="rc-tag">↑ Revenue Growth</div>
+        <div class="rc-big">+38<span>%</span></div>
+        <div class="rc-label">Revenue in 4 months</div>
+        <div class="rc-desc">Emerald Developers saw a 38% revenue increase within four months of implementing our lead automation and nurturing system — without adding a single salesperson.</div>
+      </div>
+
+      <div class="result-card dark-card rv d2">
+        <div class="rc-tag">↓ Time Saved</div>
+        <div class="rc-big">15<span>hrs</span></div>
+        <div class="rc-label">Saved per agent, per week</div>
+        <div class="rc-desc">Auto-KYC, automated follow-ups, and real-time inventory updates freed 15 hours per agent weekly — hours reinvested directly into selling.</div>
+      </div>
+
+      <div class="result-card dark-card rv">
+        <div class="rc-tag">⚡ Speed</div>
+        <div class="rc-big">4<span>min</span></div>
+        <div class="rc-label">Average lead response time</div>
+        <div class="rc-desc">Down from 28 hours. Studies show 100x higher conversion when contacted in under 5 minutes. PropFlowy makes that the default, not the exception.</div>
+      </div>
+
+      <div class="result-card rv d1" style="grid-column:span 1">
+        <div class="rc-tag">🎯 Accuracy</div>
+        <div class="rc-big">87<span>%</span></div>
+        <div class="rc-label">Revenue forecast accuracy</div>
+        <div class="rc-desc">Our ML forecasting models give sales managers reliable monthly projections — helping them plan team capacity and marketing budget with confidence.</div>
+      </div>
+
+      <div class="result-card rv d2">
+        <div class="rc-tag">📋 Compliance</div>
+        <div class="rc-big">20<span>min</span></div>
+        <div class="rc-label">Deal closing time</div>
+        <div class="rc-desc">From 3 days to 20 minutes. Automated KYC and legal document generation removes the biggest bottleneck at the finish line of every deal.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHO WE HELP ═══ -->
+<section class="section" id="who">
+  <div class="section-inner">
+    <div class="who-header rv">
+      <div class="s-tag" style="justify-content:center">Who We Work With</div>
+      <h2 class="s-h2">Built for the <i>Real Estate</i><br>Teams That Want to Scale</h2>
+      <p class="s-p" style="margin:0 auto">We work with companies that are serious about growth — and ready to back it with the right infrastructure.</p>
+    </div>
+    <div class="who-grid">
+      <div class="who-card rv">
+        <div class="who-icon" style="background:rgba(29,78,216,.15)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue4)" stroke-width="2"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        </div>
+        <div class="who-title">Property Developers & Builders</div>
+        <div class="who-desc">Managing multiple projects, hundreds of units, and large sales teams? We build the systems that give you full visibility and control — without the chaos.</div>
+        <ul class="who-points">
+          <li>Multi-project inventory management</li>
+          <li>Field agent automation</li>
+          <li>Launch campaign automation</li>
+          <li>Real-time sales dashboards</li>
+        </ul>
+      </div>
+      <div class="who-card rv d1">
+        <div class="who-icon" style="background:rgba(6,182,212,.12)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan2)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="who-title">Real Estate Agencies</div>
+        <div class="who-desc">Growing agencies need systems that scale with them — not spreadsheets and WhatsApp groups. We replace the manual chaos with intelligent, automated workflows.</div>
+        <ul class="who-points">
+          <li>Automated lead distribution</li>
+          <li>Agent performance tracking</li>
+          <li>Client nurturing sequences</li>
+          <li>Commission & pipeline reporting</li>
+        </ul>
+      </div>
+      <div class="who-card rv d2">
+        <div class="who-icon" style="background:rgba(245,158,11,.12)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="who-title">PropTech & Data-Driven Teams</div>
+        <div class="who-desc">Already using tech but need a smarter data layer? We build custom analytics, AI scoring, and forecasting systems that sit on top of your existing stack.</div>
+        <ul class="who-points">
+          <li>Custom AI lead scoring</li>
+          <li>Predictive revenue forecasting</li>
+          <li>Full attribution analytics</li>
+          <li>Data warehouse & BI integration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DATA SECTION ═══ -->
+<section class="section data-sec" id="data">
+  <div class="section-inner">
+    <div class="data-layout">
+      <div class="rv">
+        <div class="s-tag">Data & Intelligence</div>
+        <h2 class="s-h2">Your Data Is<br>Telling a Story.<br><i>We Help You Read It.</i></h2>
+        <p class="s-p">Every lead, every site visit, every deal — it all generates data. Most companies collect it and do nothing with it. We build the systems that turn that data into your biggest competitive advantage.</p>
+        <div class="data-points">
+          <div class="dp">
+            <div class="dp-icon" style="background:rgba(29,78,216,.15)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue4)" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <div>
+              <h5>Predictive Lead Scoring</h5>
+              <p>Our AI models analyse 12+ behavioral signals to score every lead in real-time. Your team calls the right person at the right moment — every time.</p>
+            </div>
+          </div>
+          <div class="dp">
+            <div class="dp-icon" style="background:rgba(6,182,212,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan2)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            <div>
+              <h5>Source Attribution Analytics</h5>
+              <p>Know exactly which ad campaigns, portals, and channels produce actual closings — not just clicks. Stop wasting budget. Invest in what converts.</p>
+            </div>
+          </div>
+          <div class="dp">
+            <div class="dp-icon" style="background:rgba(245,158,11,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
+            <div>
+              <h5>Revenue Forecasting</h5>
+              <p>ML-powered forecasting trained on your historical data. Know your projected monthly revenue and deal probability — with 87% accuracy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="data-visual rv d2">
+        <div class="dv-top">
+          <span class="dv-title">Live Intelligence View</span>
+          <div class="live-pill"><div class="live-dot"></div><span>LIVE</span></div>
+        </div>
+        <div class="dv-grid">
+          <div class="dv-box"><div class="lbl">Pipeline Value</div><div class="val">$12.4M</div><div class="chg">↑ 34% this quarter</div></div>
+          <div class="dv-box"><div class="lbl">Forecast Accuracy</div><div class="val">87%</div><div class="chg">↑ vs 52% industry avg</div></div>
+          <div class="dv-box"><div class="lbl">Lead Score Avg</div><div class="val">71</div><div class="chg">↑ quality improving</div></div>
+          <div class="dv-box"><div class="lbl">Cost per Close</div><div class="val">₹340</div><div class="chg">↓ 64% vs before</div></div>
+        </div>
+        <div class="spark-row">
+          <div class="spark-item"><div class="sil">Facebook Ads</div><div class="siv up">38% closes</div></div>
+          <div class="spark-item"><div class="sil">99acres</div><div class="siv up">29% closes</div></div>
+          <div class="spark-item"><div class="sil">Walk-in</div><div class="siv up">22% closes</div></div>
+          <div class="spark-item"><div class="sil">Cold Outreach</div><div class="siv dn">11% closes</div></div>
+        </div>
+        <div style="margin-top:4px">
+          <div style="font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:11px;color:var(--w3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">Top Leads Right Now</div>
+          <div class="feed" style="gap:7px">
+            <div class="feed-item"><div class="feed-ava" style="background:linear-gradient(135deg,#ef4444,#f97316);font-size:9px">AK</div><div class="feed-txt"><div class="feed-name" style="font-size:11px">Ahmed Khan — Tower A, 3BHK</div><div class="feed-sub">Budget ₹85L · 6 sessions · Score 96</div></div><span class="feed-tag tag-hot" style="font-size:9px">🔥 96</span></div>
+            <div class="feed-item"><div class="feed-ava" style="background:linear-gradient(135deg,#f59e0b,#d97706);font-size:9px">PR</div><div class="feed-txt"><div class="feed-name" style="font-size:11px">Priya Rao — 2BHK Site Visit Set</div><div class="feed-sub">MagicBricks lead · Score 74</div></div><span class="feed-tag tag-warm" style="font-size:9px">⚡ 74</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact-section" id="contact">
+  <div class="contact-box">
+    <div class="contact-inner">
+      <div class="s-tag" style="justify-content:center;margin-bottom:20px">Work With Us</div>
+      <h2>Ready to Build a<br><i>Better Sales Machine?</i></h2>
+      <p>Tell us your biggest challenge. We'll come back with a clear picture of what we'd build for you — and what it would actually change. No pitch decks. No pressure.</p>
+      <div class="contact-form">
+        <input type="email" class="contact-input" placeholder="Enter your work email">
+        <button class="btn-submit">Get in Touch →</button>
+      </div>
+      <p class="contact-note">We respond within one business day. No spam, ever.</p>
+      <div class="alt-links">
+        <a href="#" class="alt-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.13 7.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012.05 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Schedule a Call
+        </a>
+        <a href="#" class="alt-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          WhatsApp Us
+        </a>
+        <a href="mailto:hello@propflowy.com" class="alt-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          hello@propflowy.com
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-about">
+      <div class="logo"><div class="logo-mark">P</div><span class="logo-name">Prop<span>Flowy</span></span></div>
+      <p class="f-desc">PropFlowy is a real estate automation and data company. We help builders and agencies sell more, with less manual work, through custom-built systems and intelligence.</p>
+      <div class="f-socials">
+        <a href="#" class="f-soc"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="#" class="f-soc"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0016 3a4.48 4.48 0 00-4.48 4.9A12.72 12.72 0 013 4S-1 13 8 17a11 11 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+        <a href="#" class="f-soc"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" stroke-width="2"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <div class="f-col-head">Company</div>
+      <ul class="f-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press & Media</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-head">Services</div>
+      <ul class="f-links">
+        <li><a href="#">Lead Automation</a></li>
+        <li><a href="#">Data Intelligence</a></li>
+        <li><a href="#">Nurturing Systems</a></li>
+        <li><a href="#">Compliance Automation</a></li>
+        <li><a href="#">Custom Integrations</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-head">Contact</div>
+      <ul class="f-links">
+        <li><a href="#">hello@propflowy.com</a></li>
+        <li><a href="#">Schedule a Call</a></li>
+        <li><a href="#">WhatsApp</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="f-copy">© 2026 PropFlowy. Built for real estate teams who <span>mean business</span>.</div>
+    <div class="f-badge">🟢 Available for new projects</div>
+  </div>
+</footer>
+
+<!-- ═══ CHAT ═══ -->
+<div class="chat-wrap">
+  <div id="chatWin">
+    <div class="ch-head">
+      <div class="ch-hl">
+        <div class="ch-av">P</div>
+        <div><div class="ch-nm">PropFlowy Team</div><div class="ch-st"><div class="ch-sd"></div>We reply within minutes</div></div>
+      </div>
+      <button class="ch-cl" onclick="tg()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="ch-msgs" id="msgs">
+      <div class="m-row bot"><div class="m-av"></div><div class="bbl">Hi there 👋 I'm from PropFlowy. We help real estate builders and agencies automate their sales process and leverage data. What's your biggest challenge right now?</div></div>
+    </div>
+    <div class="ch-qr">
+      <button class="ch-q" onclick="sq('Tell me what you do')">What do you do?</button>
+      <button class="ch-q" onclick="sq('I want to work with you')">Work with you</button>
+      <button class="ch-q" onclick="sq('What results do your clients see?')">Client results</button>
+    </div>
+    <div class="ch-ir">
+      <input type="text" class="ch-in" id="ci" placeholder="Ask us anything..." onkeypress="if(event.key==='Enter')sc()">
+      <button class="ch-snd" onclick="sc()"><svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg></button>
+    </div>
+  </div>
+  <button id="chatBtn" onclick="tg()">
+    <div class="c-ping">1</div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2z"/></svg>
+  </button>
+</div>
+
+<script>
+// Cursor
+const dot=document.getElementById('dot'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a)})();
+document.querySelectorAll('button,a,.who-card,.result-card,.service-item,.who-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{dot.style.width='14px';dot.style.height='14px';ring.style.width='46px';ring.style.height='46px'});
+  el.addEventListener('mouseleave',()=>{dot.style.width='8px';dot.style.height='8px';ring.style.width='32px';ring.style.height='32px'});
+});
+
+// Scroll
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>40));
+
+// Reveal
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.07,rootMargin:'0px 0px -24px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// Chat
+function tg(){const w=document.getElementById('chatWin');w.classList.toggle('on');document.querySelector('.c-ping').style.display='none';}
+const rp={
+  'what':'PropFlowy is a real estate automation and data company. We work directly with builders and agencies to design, build, and run custom systems — lead automation, data dashboards, nurturing sequences, and compliance automation. We\'re a team you work with, not software you subscribe to. 🏗️',
+  'work':'Great! The best first step is a quick discovery call where we learn about your business. You can email us at hello@propflowy.com or use the contact form on the page. We typically respond within one business day. 📞',
+  'result':'Our clients typically see: 38%+ revenue growth, lead response time drop from 28 hours to 4 minutes, 15 hours/week saved per agent, and deal closing time cut from 3 days to 20 minutes. Real numbers from real clients. 📈',
+  'lead':'We capture leads from every source (website, Facebook Ads, 99acres, MagicBricks, walk-ins), score them with AI across 12 behavioral signals, and auto-assign to your best-matched agent in under 60 seconds. ⚡',
+  'data':'We build custom dashboards and analytics systems — pipeline forecasting, source attribution, agent performance tracking, and AI lead scoring. All unified in one real-time view built for your team. 📊',
+  'def':'That\'s a great question to discuss with our team directly. You can reach us at hello@propflowy.com or click "Let\'s Talk" in the nav. We\'d love to learn about your business. 😊'
+};
+function sq(t){am(t,'u');re(t)}
+function sc(){const i=document.getElementById('ci'),t=i.value.trim();if(!t)return;i.value='';am(t,'u');re(t)}
+function am(t,tp){const m=document.getElementById('msgs');m.innerHTML+=`<div class="m-row ${tp}">${tp==='bot'?'<div class="m-av"></div>':''}<div class="bbl">${t}</div></div>`;m.scrollTop=m.scrollHeight}
+function re(t){const l=t.toLowerCase();let r=rp.def;if(l.includes('what')||l.includes('do'))r=rp['what'];else if(l.includes('work')||l.includes('contact')||l.includes('talk'))r=rp['work'];else if(l.includes('result')||l.includes('client'))r=rp['result'];else if(l.includes('lead')||l.includes('scor'))r=rp['lead'];else if(l.includes('data')||l.includes('analy'))r=rp['data'];else r=rp['def'];setTimeout(()=>am(r,'bot'),750)}
+</script>
+</body>
+</html>
